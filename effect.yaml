@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  description: |
+    ## 接口权限验证
+    ### API网关对接参数
+
+    ## 接口调用规范
+    * 网络：测试环境网访问
+  version: 1.0.0
+  title: 数据对接文档
+paths:
+  /api/marketing/effect/summary:
+    get:
+      tags:
+        - effect
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: 已完成
+                    description: 状态名称
+                  value:
+                    type: integer
+                    example: 1
+                    description: 状态值
+              examples:
+                example-1:
+                  value:
+                    name: 已完成
+                    value: 1
+  /api/marketing/effect/region:
+    get:
+      tags:
+        - effect
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      current:
+                        type: integer
+                        example: 1
+                        description: 当前页
+                      total:
+                        type: integer
+                        example: 1
+                        description: 总记录数
+                      size:
+                        type: integer
+                        example: 0
+                        description: 页码大小
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          description: 任务id
+              examples:
+                example-1:
+                  value:
+                    page:
+                      current: 1
+                      total: 1
+                      size: 0
+                    records:
+                      - id: 1
+  /api/marketing/effect/industry:
+    get:
+      tags:
+        - effect
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      current:
+                        type: integer
+                        example: 1
+                        description: 当前页
+                      total:
+                        type: integer
+                        example: 1
+                        description: 总记录数
+                      size:
+                        type: integer
+                        example: 0
+                        description: 页码大小
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          description: 任务id
+                        name:
+                          type: string
+                        type:
+                          type: string
+              examples:
+                example-1:
+                  value:
+                    page:
+                      current: 1
+                      total: 1
+                      size: 0
+                    records:
+                      - id: 1
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: 'https://virtserver.swaggerhub.com/likepython/contact/1.0.0'
+  - description: SwaggerHub API Auto Mocking
+    url: 'https://virtserver.swaggerhub.com/lzxtshang/contact/1.0.0'
