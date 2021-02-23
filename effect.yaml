@@ -19,21 +19,37 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
-                  name:
-                    type: string
-                    example: 已完成
-                    description: 状态名称
-                  value:
-                    type: integer
-                    example: 1
-                    description: 状态值
+                  ROL:
+                    type: number
+                  point:
+                    type: number
+                  awareness:
+                    type: number
+                  na:
+                    type: number
+                  sound:
+                    type: number
+                  effect:
+                    type: number
+                required:
+                  - ROL
+                  - point
+                  - awareness
+                  - na
+                  - sound
+                  - effect
               examples:
                 example-1:
                   value:
-                    name: 已完成
-                    value: 1
+                    ROL: 0
+                    point: 0
+                    awareness: 0
+                    na: 0
+                    sound: 0
+                    effect: 0
   /api/marketing/effect/region:
     get:
       tags:
@@ -66,10 +82,12 @@ paths:
                     items:
                       type: object
                       properties:
-                        id:
+                        name:
                           type: integer
                           example: 1
                           description: 任务id
+                        valeu:
+                          type: string
               examples:
                 example-1:
                   value:
@@ -78,7 +96,8 @@ paths:
                       total: 1
                       size: 0
                     records:
-                      - id: 1
+                      - name: 北京市
+                        value: 123
   /api/marketing/effect/industry:
     get:
       tags:
@@ -111,10 +130,6 @@ paths:
                     items:
                       type: object
                       properties:
-                        id:
-                          type: integer
-                          example: 1
-                          description: 任务id
                         name:
                           type: string
                         type:
@@ -127,9 +142,60 @@ paths:
                       total: 1
                       size: 0
                     records:
-                      - id: 1
-servers:
-  - description: SwaggerHub API Auto Mocking
-    url: 'https://virtserver.swaggerhub.com/likepython/contact/1.0.0'
-  - description: SwaggerHub API Auto Mocking
-    url: 'https://virtserver.swaggerhub.com/lzxtshang/contact/1.0.0'
+                      - name: 数字政府
+                        value: 123
+  /api/marketing/effect/na:
+    get:
+      tags:
+        - effect
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      current:
+                        type: number
+                      total:
+                        type: number
+                      size:
+                        type: number
+                    required:
+                      - current
+                      - total
+                      - size
+                  records:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - name
+                        - value
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                        value:
+                          type: number
+                required:
+                  - page
+                  - records
+              examples:
+                example-1:
+                  value:
+                    page:
+                      current: 0
+                      total: 0
+                      size: 0
+                    records:
+                      - name: 1月
+                        value: 123
+      operationId: get-api-marketing-effect-na
